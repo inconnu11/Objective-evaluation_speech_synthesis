@@ -117,3 +117,4 @@ def compute_yin(sig, sr, w_len=512, w_step=256, f0_min=100, f0_max=500,
             harmonic_rates[i] = min(cmdf)
 
     return pitches, harmonic_rates, argmins, times
+
