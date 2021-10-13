@@ -1,4 +1,4 @@
-# Objective evaluation in speech synthesis/ voice conversion
+# Objective evaluation in speech synthesis
 ## defination in papers
 [MSD, F0 RMSE, F0 corr, GPE, FPE](https://arxiv.org/pdf/1904.02790.pdf)
 
