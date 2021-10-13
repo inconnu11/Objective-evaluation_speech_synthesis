@@ -1,4 +1,9 @@
 # Objective evaluation in speech synthesis
+## display overall
+![image](https://user-images.githubusercontent.com/38338826/137138608-f137d3be-be9b-4144-8c89-4dbee631a211.png)
+👉https://arxiv.org/pdf/2104.00355.pdf
+
+
 ## defination in papers
 [MSD, F0 RMSE, F0 corr, GPE, FPE](https://arxiv.org/pdf/1904.02790.pdf)
 ![image](https://user-images.githubusercontent.com/38338826/137137367-62739b52-0d72-49da-9550-06efd37d842a.png)
@@ -45,6 +50,8 @@ RMSE 22.386
 
 
 ## common
+### content
+PER, WER
 ### speaker similarity
 https://github.com/resemble-ai/Resemblyzer
 [tsne]()
