@@ -1,7 +1,9 @@
 # Objective evaluation in speech synthesis
 ## defination in papers
 [MSD, F0 RMSE, F0 corr, GPE, FPE](https://arxiv.org/pdf/1904.02790.pdf)
+![image](https://user-images.githubusercontent.com/38338826/137137367-62739b52-0d72-49da-9550-06efd37d842a.png)
 
+[MCD, GPE, VDE, FFE](http://proceedings.mlr.press/v80/skerry-ryan18a/skerry-ryan18a.pdf)
 [MCD](https://www1.se.cuhk.edu.hk/~hccl/publications/pub/2016_paper_297.pdf)
 
 
@@ -25,7 +27,7 @@ log dB 4.4
 
 
 ### F0 RMSE/ corr/ VDE/ FFE
-
+[GPE](https://github.com/bastibe/MAPS-Scripts)
 
 
 
@@ -45,3 +47,6 @@ RMSE 22.386
 ## common
 ### speaker similarity
 https://github.com/resemble-ai/Resemblyzer
+[tsne]()
+
+
