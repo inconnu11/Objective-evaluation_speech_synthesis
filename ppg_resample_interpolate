@@ -1,0 +1,101 @@
+import sys
+import numpy as np
+from scipy.interpolate import interp1d
+import os
+
+
+
+
+
+############################# single file #############################
+# ppg_original = np.load('/home/v-jiewang/ContentANDStyle_Disentangle/ppg_spk_norm/assets_25_10ms/PPGs_VCTK105/p225/p225_001.npy')
+# print(ppg_original.shape)   # 206 frame (206, 41)
+# print(ppg_original)
+# # np.savetxt()
+
+# duration = ppg_original.shape[0] * shift_from
+# # print(duration)   # 2.06 s 保留到小数点后1位？
+
+# t = np.arange(0, duration, shift_from)
+# # print(t.shape)
+# t2 = np.arange(0, duration, shift_to)
+# # print(t2)
+
+# ppg_val = interp1d(t, ppg_original,
+#                     kind='linear', axis=0, fill_value='extrapolate', copy=False,
+#                     assume_sorted=True)
+
+# ppg_val_to = ppg_val(t2)
+# print(ppg_val_to.shape) # (129, 41)
+# print(ppg_val_to)
+############################# single file #############################
+
+
+
+shift_from = 0.01  # 帧移 s
+shift_to = 0.016
+
+############################# multiple file #############################
+ppg_dir = '/home/v-jiewang/ContentANDStyle_Disentangle/ppg_spk_norm/assets_25_10ms/PPGs_VCTK105'
+ppg_target_dir = '/home/v-jiewang/ContentANDStyle_Disentangle/ppg_spk_norm/assets_64_16ms/PPGs_VCTK105_64_16ms'
+for spk in os.listdir(ppg_dir):
+    # print(spk)
+    target_spk_dir = os.path.join(ppg_target_dir, spk)
+    if not os.path.exists(target_spk_dir):
+        os.makedirs(target_spk_dir)
+    # print(target_spk_dir)
+    for uttid in os.listdir(os.path.join(ppg_dir, spk)):
+        print(uttid)
+        ppg_original = np.load(os.path.join(ppg_dir, spk, uttid))
+        # print("ppg_original shape[0]", ppg_original.shape)
+        duration = ppg_original.shape[0] * shift_from
+        t = np.arange(0, duration, shift_from)
+        # print("t shape[0]", t.shape[0])
+        t2 = np.arange(0, duration, shift_to)
+        if t.shape[0] < ppg_original.shape[0]:
+            diffe = ppg_original.shape[0] - t.shape[0]
+            if diffe <= 1:
+                ppg_original = ppg_original[:t.shape[0], :]
+        else:
+            diffe = t.shape[0] - ppg_original.shape[0]
+            if diffe <= 1:
+                t = t[:ppg_original.shape[0]]
+        assert t.shape[0] == ppg_original.shape[0]
+
+        ppg_val = interp1d(t, ppg_original,
+                    kind='linear', axis=0, fill_value='extrapolate', copy=False,
+                    assume_sorted=True)
+        ppg_val_to = ppg_val(t2)
+        target_ppg_file_name = os.path.join(target_spk_dir, uttid)
+        # print(target_ppg_file_name)
+        np.save(os.path.join(target_spk_dir, uttid), ppg_val_to)
+
+############################# multiple file #############################
+
+
+############################# original #############################
+# if __name__ == '__main__':
+#     if len(sys.argv) != 3:
+#         print('Usage: python3 %s sampling_rate_from sampling_rate_to <lf0_in.float32 >lf0_out.float32' %sys.argv[0])
+#         exit(-1)
+    
+#     sr_from = float(sys.argv[1])
+#     sr_to = float(sys.argv[2])
+#     lf0 = np.frombuffer(sys.stdin.buffer.read(),dtype='float32').copy()
+#     t = np.arange(0,lf0.size)/sr_from
+
+#     voiced_mask = lf0>0
+#     duration = lf0.size/sr_from
+#     t2= np.arange(0,duration,1/sr_to)
+    
+#     lf0[0] = lf0[voiced_mask][0]
+#     lf0[-1] = lf0[voiced_mask][-1]
+#     voiced_mask = lf0 > 0
+
+#     lf0_val = interp1d(t[voiced_mask], lf0[voiced_mask],
+#                        kind='linear', fill_value='extrapolate', copy=False,
+#                        assume_sorted=True)
+
+#     lf0_val_t2 = lf0_val(t2)
+#     sys.stdout.buffer.write(lf0_val(t2).astype('float32').tobytes())
+############################# original #############################
