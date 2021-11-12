@@ -57,3 +57,9 @@ https://github.com/resemble-ai/Resemblyzer
 [tsne]()
 
 
+in paper [Building Bilingual and Code-Switched Voice Conversion with Limited
+Training Data Using Embedding Consistency Loss](https://arxiv.org/pdf/2104.10832.pdf)
+![image](https://user-images.githubusercontent.com/38338826/141472983-dd92c5e9-f9de-4912-91ca-979a8b451107.png)
+
+
+
