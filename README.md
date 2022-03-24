@@ -1,4 +1,12 @@
-# Objective evaluation in speech synthesis
+# Evaluation methods in SpeechSynthesis(including VC)
+
+
+
+## subjective 
+### CMOS : https://ecs.utdallas.edu/loizou/cimplants/quality_assessment_chapter.pdf
+
+
+## Objective evaluation in speech synthesis
 ## display overall
 ![image](https://user-images.githubusercontent.com/38338826/137138608-f137d3be-be9b-4144-8c89-4dbee631a211.png)
 👉https://arxiv.org/pdf/2104.00355.pdf
